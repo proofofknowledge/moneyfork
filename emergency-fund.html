@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Fund Calculator — MoneyFork | How Much Do You Need?</title>
+<meta name="description" content="How much emergency fund do you need? Calculate your ideal savings target based on your monthly expenses, job stability, dependents, and risk factors. Free calculator — no sign-up.">
+<meta name="keywords" content="emergency fund calculator, how much emergency fund, emergency savings, rainy day fund calculator, months of expenses saved, how much should I save for emergencies">
+<meta name="author" content="MoneyFork">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://moneyfork.com/emergency-fund">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moneyfork.com/emergency-fund">
+<meta property="og:title" content="Emergency Fund Calculator — MoneyFork">
+<meta property="og:description" content="How much emergency fund do you need? Calculate your ideal target. Free calculator.">
+<meta property="og:image" content="https://moneyfork.com/og-emergency-fund.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="MoneyFork">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Emergency Fund Calculator — MoneyFork">
+<meta name="twitter:description" content="How much emergency fund do you need? Calculate your ideal target. Free calculator.">
+<meta name="twitter:image" content="https://moneyfork.com/og-emergency-fund.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C0F14'/%3E%3Cpath d='M16 5L16 14' stroke='%23F59E0B' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 14L8 25' stroke='%2334D399' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 14L24 25' stroke='%2360A5FA' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='8' cy='25' r='3' fill='%2334D399' opacity='0.4'/%3E%3Ccircle cx='24' cy='25' r='3' fill='%2360A5FA' opacity='0.4'/%3E%3Ccircle cx='16' cy='14' r='3' fill='%23F59E0B' opacity='0.4'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"MoneyFork Emergency Fund Calculator","description":"Calculate how much emergency fund you need based on expenses, job stability, and risk factors.","url":"https://moneyfork.com/emergency-fund","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"MoneyFork","url":"https://moneyfork.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much emergency fund should I have?","acceptedAnswer":{"@type":"Answer","text":"Most financial experts recommend 3-6 months of essential expenses. If you have a stable job with dual income, 3 months may suffice. If you're self-employed, a single earner, or in an unstable industry, 6-12 months is safer. Your ideal target depends on your specific risk factors."}},{"@type":"Question","name":"Where should I keep my emergency fund?","acceptedAnswer":{"@type":"Answer","text":"Keep your emergency fund in a high-yield savings account (HYSA) where it's easily accessible but still earning interest. Avoid investing emergency funds in stocks or locking them in CDs. The goal is liquidity — you need to access this money quickly when emergencies hit."}},{"@type":"Question","name":"Should I pay off debt or build an emergency fund first?","acceptedAnswer":{"@type":"Answer","text":"Most advisors recommend building a starter emergency fund of $1,000-2,000 first, then aggressively paying off high-interest debt, then building your full emergency fund. Without any emergency savings, an unexpected expense could force you into more debt."}}]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0F14; --surface: #151921; --surface-2: #1C2230; --surface-3: #232A38;
+    --border: #2A3244; --text: #E8ECF4; --text-muted: #8490A7; --text-dim: #5A6580;
+    --accent-safe: #34D399; --accent-safe-dim: rgba(52, 211, 153, 0.12);
+    --accent-shield: #38BDF8; --accent-shield-dim: rgba(56, 189, 248, 0.12);
+    --accent-warn: #F59E0B; --accent-warn-dim: rgba(245, 158, 11, 0.1);
+    --accent-danger: #F87171; --accent-danger-dim: rgba(248, 113, 113, 0.12);
+    --accent-gold: #F59E0B; --accent-gold-dim: rgba(245, 158, 11, 0.1);
+    --gradient-shield: linear-gradient(135deg, #38BDF8, #0EA5E9);
+    --gradient-safe: linear-gradient(135deg, #34D399, #10B981);
+    --gradient-warn: linear-gradient(135deg, #F59E0B, #D97706);
+    --gradient-danger: linear-gradient(135deg, #F87171, #EF4444);
+    --radius: 14px; --radius-sm: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
+  .glow-1 { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; z-index: 0; }
+  .glow-2 { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(52, 211, 153, 0.04) 0%, transparent 70%); bottom: -100px; left: -100px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  header { padding: 32px 0 0; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-icon { width: 40px; height: 40px; }
+  .logo-icon svg { width: 100%; height: 100%; }
+  .logo-text { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.5px; }
+  .logo-text span { color: var(--accent-gold); }
+  nav { display: flex; justify-content: space-between; align-items: center; }
+  .nav-links { display: flex; gap: 8px; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
+  .nav-links a.active { color: var(--accent-gold); background: var(--accent-gold-dim); }
+  .hero { text-align: center; padding: 56px 0 40px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold); }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+  .hero h1 .blue { color: var(--accent-shield); }
+  .hero p { color: var(--text-muted); font-size: 17px; max-width: 580px; margin: 0 auto; line-height: 1.6; }
+  .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .section-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .panel-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; }
+  .panel-subtitle { font-size: 13px; color: var(--text-muted); }
+  .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 8px; }
+  .field label .value-display { color: var(--text); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+  input[type="range"] { -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px; background: var(--surface-3); outline: none; margin-top: 4px; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-gold); cursor: pointer; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3); transition: transform 0.15s; }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+  /* Risk factor pills */
+  .risk-factors { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .risk-pill {
+    padding: 8px 16px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--text-muted);
+    cursor: pointer; transition: all 0.2s; user-select: none;
+  }
+  .risk-pill:hover { border-color: var(--text-dim); color: var(--text); }
+  .risk-pill.active { border-color: var(--accent-shield); color: var(--accent-shield); background: var(--accent-shield-dim); }
+
+  /* Big result */
+  .result-hero { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; text-align: center; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .result-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-shield); }
+  .result-hero .label { font-size: 14px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .result-hero .big-number { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 64px); color: var(--accent-shield); letter-spacing: -2px; margin-bottom: 8px; }
+  .result-hero .sub { color: var(--text-muted); font-size: 15px; }
+
+  /* Range tiers */
+  .tier-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .tier-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; text-align: center; position: relative; overflow: hidden; }
+  .tier-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .tier-card.minimum::before { background: var(--gradient-warn); }
+  .tier-card.recommended::before { background: var(--gradient-shield); }
+  .tier-card.ideal::before { background: var(--gradient-safe); }
+  .tier-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 8px; }
+  .tier-card.minimum .tier-label { color: var(--accent-warn); }
+  .tier-card.recommended .tier-label { color: var(--accent-shield); }
+  .tier-card.ideal .tier-label { color: var(--accent-safe); }
+  .tier-price { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .tier-card.minimum .tier-price { color: var(--accent-warn); }
+  .tier-card.recommended .tier-price { color: var(--accent-shield); }
+  .tier-card.ideal .tier-price { color: var(--accent-safe); }
+  .tier-months { font-size: 13px; color: var(--text-muted); }
+
+  /* Progress toward goal */
+  .progress-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .progress-bar-container { margin: 20px 0; }
+  .progress-track { height: 28px; background: var(--surface-3); border-radius: 14px; overflow: hidden; position: relative; }
+  .progress-fill { height: 100%; border-radius: 14px; transition: width 0.6s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; font-size: 12px; font-weight: 700; color: var(--bg); min-width: 40px; }
+  .progress-markers { display: flex; justify-content: space-between; margin-top: 8px; }
+  .progress-marker { font-size: 11px; color: var(--text-dim); text-align: center; }
+  .progress-marker.active { color: var(--text); font-weight: 600; }
+
+  .save-plan { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .save-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; text-align: center; }
+  .save-card .amount { font-size: 22px; font-weight: 700; color: var(--accent-shield); font-variant-numeric: tabular-nums; }
+  .save-card .timeline { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .save-card .label { font-size: 11px; color: var(--text-dim); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .insight-box { background: var(--accent-gold-dim); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--radius-sm); padding: 18px; margin-bottom: 24px; display: flex; gap: 12px; align-items: flex-start; }
+  .insight-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .insight-text { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .insight-text strong { color: var(--text); }
+
+  footer { text-align: center; padding: 48px 0 32px; color: var(--text-dim); font-size: 13px; border-top: 1px solid var(--border); }
+
+  @media (max-width: 768px) {
+    .fields-grid { grid-template-columns: 1fr; }
+    .tier-row, .save-plan { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 32px; }
+    .result-hero .big-number { font-size: 36px; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeUp 0.5s ease-out forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+</style>
+</head>
+<body>
+<div class="glow-1"></div><div class="glow-2"></div>
+<div class="container">
+  <header><nav>
+    <div class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4L20 18" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/><path d="M20 18L8 32" stroke="#34D399" stroke-width="3" stroke-linecap="round"/><path d="M20 18L32 32" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"/><circle cx="8" cy="32" r="4" fill="#34D399" opacity="0.3"/><circle cx="32" cy="32" r="4" fill="#60A5FA" opacity="0.3"/><circle cx="20" cy="18" r="4" fill="#F59E0B" opacity="0.3"/></svg></div>
+      <div class="logo-text">Money<span>Fork</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#">Rent vs Buy</a><a href="#">Debt vs Invest</a><a href="#">Compound Interest</a><a href="#" class="active">Emergency Fund</a>
+    </div>
+  </nav></header>
+
+  <section class="hero animate-in">
+    <div class="hero-badge"><span class="dot"></span> Free financial decision tools</div>
+    <h1>How Much <span class="blue">Emergency Fund</span> Do You Need?</h1>
+    <p>Get a personalized savings target based on your expenses, income stability, and life situation.</p>
+  </section>
+
+  <!-- EXPENSES -->
+  <div class="section animate-in delay-1">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--accent-shield-dim)">💵</div>
+      <div><div class="panel-title">Monthly Expenses</div><div class="panel-subtitle">Your essential monthly costs</div></div>
+    </div>
+    <div class="fields-grid">
+      <div class="field">
+        <label>Housing (Rent/Mortgage) <span class="value-display" id="housingDisplay">$1,500</span></label>
+        <input type="range" id="housing" min="0" max="5000" step="50" value="1500" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Utilities & Bills <span class="value-display" id="utilitiesDisplay">$300</span></label>
+        <input type="range" id="utilities" min="0" max="1000" step="25" value="300" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Food & Groceries <span class="value-display" id="foodDisplay">$500</span></label>
+        <input type="range" id="food" min="100" max="2000" step="25" value="500" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Transportation <span class="value-display" id="transportDisplay">$400</span></label>
+        <input type="range" id="transport" min="0" max="1500" step="25" value="400" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Insurance (Health, etc.) <span class="value-display" id="insurDisplay">$300</span></label>
+        <input type="range" id="insur" min="0" max="2000" step="25" value="300" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Other Essentials <span class="value-display" id="otherDisplay">$200</span></label>
+        <input type="range" id="other" min="0" max="2000" step="25" value="200" oninput="update()">
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+      <span style="font-size:13px; color:var(--text-muted);">Total Monthly Essentials:</span>
+      <span style="font-size:22px; font-weight:700; color:var(--accent-shield); margin-left:8px;" id="totalExpenses">$3,200</span>
+    </div>
+  </div>
+
+  <!-- RISK FACTORS -->
+  <div class="section animate-in delay-2">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--accent-warn-dim)">⚡</div>
+      <div><div class="panel-title">Your Risk Factors</div><div class="panel-subtitle">Select all that apply — these increase your recommended months</div></div>
+    </div>
+    <div class="risk-factors" id="riskFactors">
+      <div class="risk-pill" data-months="1" onclick="toggleRisk(this)">Single income household</div>
+      <div class="risk-pill" data-months="1" onclick="toggleRisk(this)">Self-employed / freelance</div>
+      <div class="risk-pill" data-months="0.5" onclick="toggleRisk(this)">Have dependents</div>
+      <div class="risk-pill" data-months="0.5" onclick="toggleRisk(this)">Unstable industry</div>
+      <div class="risk-pill" data-months="0.5" onclick="toggleRisk(this)">No disability insurance</div>
+      <div class="risk-pill" data-months="0.5" onclick="toggleRisk(this)">High-deductible health plan</div>
+      <div class="risk-pill" data-months="0.5" onclick="toggleRisk(this)">Homeowner (repairs)</div>
+      <div class="risk-pill" data-months="-0.5" onclick="toggleRisk(this)">Dual income household</div>
+      <div class="risk-pill" data-months="-0.5" onclick="toggleRisk(this)">Very stable job / govt</div>
+    </div>
+
+    <div class="fields-grid" style="margin-top:20px;">
+      <div class="field">
+        <label>Current Emergency Savings <span class="value-display" id="currentDisplay">$5,000</span></label>
+        <input type="range" id="currentSavings" min="0" max="100000" step="500" value="5000" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Monthly Amount You Can Save <span class="value-display" id="canSaveDisplay">$500</span></label>
+        <input type="range" id="canSave" min="50" max="5000" step="50" value="500" oninput="update()">
+      </div>
+    </div>
+  </div>
+
+  <!-- BIG RESULT -->
+  <div class="result-hero">
+    <div class="label">Your Recommended Emergency Fund</div>
+    <div class="big-number" id="bigTarget">$0</div>
+    <div class="sub"><strong id="monthsRec">6</strong> months of essential expenses</div>
+  </div>
+
+  <!-- TIERS -->
+  <div class="tier-row">
+    <div class="tier-card minimum">
+      <div class="tier-label">Starter</div>
+      <div class="tier-price" id="starterAmt">$0</div>
+      <div class="tier-months">3 months</div>
+    </div>
+    <div class="tier-card recommended">
+      <div class="tier-label">Recommended</div>
+      <div class="tier-price" id="recAmt">$0</div>
+      <div class="tier-months" id="recMonthsLabel">6 months</div>
+    </div>
+    <div class="tier-card ideal">
+      <div class="tier-label">Fully Secure</div>
+      <div class="tier-price" id="idealAmt">$0</div>
+      <div class="tier-months">12 months</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--accent-safe-dim)">🎯</div>
+      <div><div class="panel-title">Your Progress & Savings Plan</div><div class="panel-subtitle">How close you are and how to get there</div></div>
+    </div>
+    <div class="progress-bar-container">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:30%">30%</div>
+      </div>
+      <div class="progress-markers">
+        <span class="progress-marker">$0</span>
+        <span class="progress-marker" id="progStarter">Starter</span>
+        <span class="progress-marker" id="progRec">Recommended</span>
+        <span class="progress-marker" id="progIdeal">12 mo</span>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin:16px 0;">
+      <span style="font-size:14px; color:var(--text-muted);">You still need:</span>
+      <span style="font-size:28px; font-weight:700; margin-left:8px;" id="remainingAmt">$0</span>
+    </div>
+
+    <div class="save-plan">
+      <div class="save-card">
+        <div class="amount" id="plan6mo">$0/mo</div>
+        <div class="timeline">to reach goal in 6 months</div>
+        <div class="label">Aggressive</div>
+      </div>
+      <div class="save-card">
+        <div class="amount" id="plan12mo">$0/mo</div>
+        <div class="timeline">to reach goal in 12 months</div>
+        <div class="label">Moderate</div>
+      </div>
+      <div class="save-card">
+        <div class="amount" id="planCurrent">0 months</div>
+        <div class="timeline" id="planCurrentDesc">at your current savings rate</div>
+        <div class="label">Your Pace</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="insight-icon">💡</div>
+    <div class="insight-text" id="insightText">Loading...</div>
+  </div>
+
+  <div class="section" style="margin-bottom: 48px;">
+    <div class="panel-title" style="margin-bottom: 12px;">How This Calculator Works</div>
+    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
+      The baseline recommendation is 3-6 months of essential expenses. This calculator adjusts upward or downward based on your specific risk factors. Single earners, self-employed individuals, and those in unstable industries need more cushion. Dual-income households and government employees can get by with less. Your emergency fund should cover only essential expenses — the bare minimum to keep a roof over your head and food on the table, not your full lifestyle spending.
+    </p>
+  </div>
+
+  <footer>
+    <p>MoneyFork — Free financial decision tools. No ads. No accounts. Just clarity.</p>
+    <p style="margin-top:8px;">Built to help you make smarter money decisions.</p>
+  </footer>
+</div>
+
+<script>
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+function toggleRisk(el) {
+  el.classList.toggle('active');
+  update();
+}
+
+function update() {
+  const housing = +document.getElementById('housing').value;
+  const utilities = +document.getElementById('utilities').value;
+  const food = +document.getElementById('food').value;
+  const transport = +document.getElementById('transport').value;
+  const insur = +document.getElementById('insur').value;
+  const other = +document.getElementById('other').value;
+  const currentSavings = +document.getElementById('currentSavings').value;
+  const canSave = +document.getElementById('canSave').value;
+
+  document.getElementById('housingDisplay').textContent = fmt(housing);
+  document.getElementById('utilitiesDisplay').textContent = fmt(utilities);
+  document.getElementById('foodDisplay').textContent = fmt(food);
+  document.getElementById('transportDisplay').textContent = fmt(transport);
+  document.getElementById('insurDisplay').textContent = fmt(insur);
+  document.getElementById('otherDisplay').textContent = fmt(other);
+  document.getElementById('currentDisplay').textContent = fmt(currentSavings);
+  document.getElementById('canSaveDisplay').textContent = fmt(canSave);
+
+  const totalExpenses = housing + utilities + food + transport + insur + other;
+  document.getElementById('totalExpenses').textContent = fmt(totalExpenses);
+
+  // Calculate recommended months based on risk factors
+  let baseMonths = 5; // Middle of 3-6 range
+  const activePills = document.querySelectorAll('.risk-pill.active');
+  activePills.forEach(pill => {
+    baseMonths += parseFloat(pill.dataset.months);
+  });
+  const recMonths = Math.max(3, Math.min(12, Math.round(baseMonths * 2) / 2));
+
+  const starterAmt = totalExpenses * 3;
+  const recAmt = totalExpenses * recMonths;
+  const idealAmt = totalExpenses * 12;
+
+  document.getElementById('bigTarget').textContent = fmt(recAmt);
+  document.getElementById('monthsRec').textContent = recMonths;
+  document.getElementById('starterAmt').textContent = fmt(starterAmt);
+  document.getElementById('recAmt').textContent = fmt(recAmt);
+  document.getElementById('recMonthsLabel').textContent = recMonths + ' months';
+  document.getElementById('idealAmt').textContent = fmt(idealAmt);
+
+  // Progress
+  const pctOfRec = Math.min(100, (currentSavings / recAmt) * 100);
+  const fill = document.getElementById('progressFill');
+  fill.style.width = Math.max(3, pctOfRec) + '%';
+  fill.textContent = Math.round(pctOfRec) + '%';
+
+  if (pctOfRec >= 100) {
+    fill.style.background = 'var(--gradient-safe)';
+  } else if (pctOfRec >= 50) {
+    fill.style.background = 'var(--gradient-shield)';
+  } else if (pctOfRec >= 25) {
+    fill.style.background = 'var(--gradient-warn)';
+  } else {
+    fill.style.background = 'var(--gradient-danger)';
+  }
+
+  const remaining = Math.max(0, recAmt - currentSavings);
+  document.getElementById('remainingAmt').textContent = fmt(remaining);
+  document.getElementById('remainingAmt').style.color = remaining === 0 ? 'var(--accent-safe)' : 'var(--accent-shield)';
+
+  document.getElementById('progStarter').textContent = fmt(starterAmt);
+  document.getElementById('progRec').textContent = fmt(recAmt);
+  document.getElementById('progIdeal').textContent = fmt(idealAmt);
+
+  // Savings plan
+  const need6 = remaining > 0 ? remaining / 6 : 0;
+  const need12 = remaining > 0 ? remaining / 12 : 0;
+  const monthsAtPace = canSave > 0 ? Math.ceil(remaining / canSave) : Infinity;
+
+  document.getElementById('plan6mo').textContent = fmt(need6) + '/mo';
+  document.getElementById('plan12mo').textContent = fmt(need12) + '/mo';
+
+  if (remaining === 0) {
+    document.getElementById('planCurrent').textContent = '✓ Done!';
+    document.getElementById('planCurrentDesc').textContent = 'You\'ve reached your goal';
+  } else if (monthsAtPace === Infinity) {
+    document.getElementById('planCurrent').textContent = '—';
+    document.getElementById('planCurrentDesc').textContent = 'Set a monthly savings amount';
+  } else {
+    document.getElementById('planCurrent').textContent = monthsAtPace + ' months';
+    document.getElementById('planCurrentDesc').textContent = `at ${fmt(canSave)}/mo`;
+  }
+
+  // Insight
+  const insight = document.getElementById('insightText');
+  const currentMonths = totalExpenses > 0 ? (currentSavings / totalExpenses) : 0;
+
+  if (currentMonths >= recMonths) {
+    insight.innerHTML = `<strong>You're fully funded!</strong> Your ${fmt(currentSavings)} covers ${currentMonths.toFixed(1)} months of expenses — you've met your ${recMonths}-month target. Consider keeping the excess in a high-yield savings account earning 4-5% APY. Any savings beyond 12 months might be better invested for long-term growth.`;
+  } else if (currentMonths >= 3) {
+    insight.innerHTML = `<strong>Good progress:</strong> You have ${currentMonths.toFixed(1)} months of expenses saved. You're past the critical starter threshold — your next goal is reaching ${recMonths} months (${fmt(recAmt)}). At ${fmt(canSave)}/mo, you'll be there in ${monthsAtPace} months. Keep your emergency fund in a high-yield savings account so it earns interest while staying liquid.`;
+  } else if (currentMonths >= 1) {
+    insight.innerHTML = `<strong>Building momentum:</strong> You have ${currentMonths.toFixed(1)} months of expenses saved. Your first milestone is 3 months (${fmt(starterAmt)}). Focus on automating a monthly transfer — even ${fmt(canSave)}/mo gets you to the starter level in ${Math.ceil((starterAmt - currentSavings) / canSave)} months. This is your financial safety net — it prevents a single unexpected expense from becoming a debt spiral.`;
+  } else {
+    insight.innerHTML = `<strong>Priority one:</strong> Building even a ${fmt(1000)} starter fund protects you from the most common emergencies (car repair, medical bill, appliance failure). Set up an automatic transfer of ${fmt(canSave)}/mo to a separate savings account. The goal isn't perfection — it's getting started. Every dollar saved is one less dollar of potential debt.`;
+  }
+}
+
+update();
+</script>
+</body>
+</html>

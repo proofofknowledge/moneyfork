@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Primary Meta Tags -->
+<title>How Much House Can I Afford Calculator — MoneyFork | Free Financial Decision Tools</title>
+<meta name="title" content="How Much House Can I Afford Calculator — MoneyFork | Free Financial Decision Tools">
+<meta name="description" content="Find out how much house you can afford based on your income, debts, down payment, and interest rate. See your maximum home price, monthly payment breakdown, and affordability warnings. Free calculator.">
+<meta name="keywords" content="how much house can I afford, home affordability calculator, mortgage affordability, house budget calculator, what mortgage can I afford, home buying calculator, DTI calculator">
+<meta name="author" content="MoneyFork">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://moneyfork.com/house-affordability">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moneyfork.com/house-affordability">
+<meta property="og:title" content="How Much House Can I Afford? — MoneyFork">
+<meta property="og:description" content="Find your max home price based on income, debts, and down payment. Free interactive calculator — no sign-up required.">
+<meta property="og:image" content="https://moneyfork.com/og-house-affordability.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="MoneyFork">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Much House Can I Afford? — MoneyFork">
+<meta name="twitter:description" content="Find your max home price based on income, debts, and down payment. Free interactive calculator.">
+<meta name="twitter:image" content="https://moneyfork.com/og-house-affordability.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C0F14'/%3E%3Cpath d='M16 5L16 14' stroke='%23F59E0B' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 14L8 25' stroke='%2334D399' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 14L24 25' stroke='%2360A5FA' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='8' cy='25' r='3' fill='%2334D399' opacity='0.4'/%3E%3Ccircle cx='24' cy='25' r='3' fill='%2360A5FA' opacity='0.4'/%3E%3Ccircle cx='16' cy='14' r='3' fill='%23F59E0B' opacity='0.4'/%3E%3C/svg%3E">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "MoneyFork House Affordability Calculator",
+  "description": "Calculate how much house you can afford based on income, debts, down payment, and mortgage rate.",
+  "url": "https://moneyfork.com/house-affordability",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "MoneyFork", "url": "https://moneyfork.com" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much house can I afford on my salary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common guideline is that your total monthly housing costs (mortgage, taxes, insurance) should not exceed 28% of your gross monthly income, and your total debt payments should stay under 36%. For example, on a $75,000 salary, your housing budget would be roughly $1,750 per month. The actual home price depends on your down payment, interest rate, and local property taxes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 28/36 rule for mortgages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 28/36 rule is a lending guideline where your monthly housing costs should not exceed 28% of gross income (front-end ratio), and total monthly debt payments including housing should not exceed 36% of gross income (back-end ratio). Lenders may approve higher ratios, but staying within these limits reduces financial stress."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I put down on a house?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditionally 20% is recommended to avoid private mortgage insurance (PMI). However, many buyers put down 3-10%. A larger down payment means a smaller loan, lower monthly payments, and no PMI. The tradeoff is tying up more cash that could be invested elsewhere."
+      }
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0F14; --surface: #151921; --surface-2: #1C2230; --surface-3: #232A38;
+    --border: #2A3244; --text: #E8ECF4; --text-muted: #8490A7; --text-dim: #5A6580;
+    --accent-house: #38BDF8; --accent-house-dim: rgba(56, 189, 248, 0.12);
+    --accent-warn: #F87171; --accent-warn-dim: rgba(248, 113, 113, 0.12);
+    --accent-safe: #34D399; --accent-safe-dim: rgba(52, 211, 153, 0.12);
+    --accent-gold: #F59E0B; --accent-gold-dim: rgba(245, 158, 11, 0.1);
+    --gradient-house: linear-gradient(135deg, #38BDF8, #0EA5E9);
+    --gradient-safe: linear-gradient(135deg, #34D399, #10B981);
+    --gradient-warn: linear-gradient(135deg, #F87171, #EF4444);
+    --radius: 14px; --radius-sm: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
+  .glow-1 { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; z-index: 0; }
+  .glow-2 { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(52, 211, 153, 0.04) 0%, transparent 70%); bottom: -100px; left: -100px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  header { padding: 32px 0 0; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-icon { width: 40px; height: 40px; }
+  .logo-icon svg { width: 100%; height: 100%; }
+  .logo-text { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.5px; }
+  .logo-text span { color: var(--accent-gold); }
+  nav { display: flex; justify-content: space-between; align-items: center; }
+  .nav-links { display: flex; gap: 8px; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
+  .nav-links a.active { color: var(--accent-gold); background: var(--accent-gold-dim); }
+
+  .hero { text-align: center; padding: 56px 0 40px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold); }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+  .hero h1 .blue { color: var(--accent-house); }
+  .hero p { color: var(--text-muted); font-size: 17px; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+  .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .section-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .section-icon.income { background: var(--accent-safe-dim); }
+  .section-icon.home { background: var(--accent-house-dim); }
+  .section-icon.debt { background: var(--accent-warn-dim); }
+  .panel-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; }
+  .panel-subtitle { font-size: 13px; color: var(--text-muted); }
+
+  .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .fields-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 8px; }
+  .field label .value-display { color: var(--text); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+
+  input[type="range"] { -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px; background: var(--surface-3); outline: none; margin-top: 4px; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-gold); cursor: pointer; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3); transition: transform 0.15s; }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+  /* Big result card */
+  .result-hero {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 40px; text-align: center; margin-bottom: 24px; position: relative; overflow: hidden;
+  }
+  .result-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-house); }
+  .result-hero .label { font-size: 14px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .result-hero .big-number { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 64px); color: var(--accent-house); letter-spacing: -2px; margin-bottom: 8px; }
+  .result-hero .sub { color: var(--text-muted); font-size: 15px; }
+
+  /* Three tier cards */
+  .tier-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .tier-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px; text-align: center; position: relative; overflow: hidden;
+  }
+  .tier-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .tier-card.conservative::before { background: var(--gradient-safe); }
+  .tier-card.comfortable::before { background: var(--gradient-house); }
+  .tier-card.aggressive::before { background: var(--gradient-warn); }
+  .tier-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 8px; }
+  .tier-card.conservative .tier-label { color: var(--accent-safe); }
+  .tier-card.comfortable .tier-label { color: var(--accent-house); }
+  .tier-card.aggressive .tier-label { color: var(--accent-warn); }
+  .tier-price { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .tier-card.conservative .tier-price { color: var(--accent-safe); }
+  .tier-card.comfortable .tier-price { color: var(--accent-house); }
+  .tier-card.aggressive .tier-price { color: var(--accent-warn); }
+  .tier-payment { font-size: 13px; color: var(--text-muted); }
+  .tier-dti { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+  /* Donut chart */
+  .payment-breakdown { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .breakdown-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .breakdown-content { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: center; }
+  .donut-container { position: relative; width: 200px; height: 200px; }
+  .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+  .donut-center .amount { font-family: 'DM Serif Display', serif; font-size: 24px; }
+  .donut-center .label { font-size: 12px; color: var(--text-muted); }
+
+  .payment-items { display: flex; flex-direction: column; gap: 12px; }
+  .payment-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--surface-2); border-radius: var(--radius-sm); }
+  .payment-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+  .payment-info { flex: 1; }
+  .payment-name { font-size: 13px; color: var(--text-muted); }
+  .payment-amount { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* DTI gauge */
+  .dti-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .dti-header { margin-bottom: 20px; }
+  .dti-gauge { height: 24px; background: var(--surface-3); border-radius: 12px; overflow: hidden; position: relative; margin-bottom: 12px; }
+  .dti-fill { height: 100%; border-radius: 12px; transition: width 0.6s ease; }
+  .dti-markers { display: flex; justify-content: space-between; position: relative; margin-bottom: 8px; }
+  .dti-marker { font-size: 11px; color: var(--text-dim); }
+  .dti-labels { display: flex; gap: 24px; justify-content: center; }
+  .dti-label-item { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+  .dti-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+  .insight-box { background: var(--accent-gold-dim); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--radius-sm); padding: 18px; margin-top: 0; margin-bottom: 24px; display: flex; gap: 12px; align-items: flex-start; }
+  .insight-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .insight-text { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .insight-text strong { color: var(--text); }
+
+  footer { text-align: center; padding: 48px 0 32px; color: var(--text-dim); font-size: 13px; border-top: 1px solid var(--border); }
+  footer a { color: var(--accent-gold); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .fields-grid, .fields-grid-3 { grid-template-columns: 1fr; }
+    .tier-row { grid-template-columns: 1fr; }
+    .breakdown-content { grid-template-columns: 1fr; justify-items: center; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 32px; }
+    .result-hero .big-number { font-size: 36px; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeUp 0.5s ease-out forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+</style>
+</head>
+<body>
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+<div class="container">
+  <header><nav>
+    <div class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4L20 18" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/><path d="M20 18L8 32" stroke="#34D399" stroke-width="3" stroke-linecap="round"/><path d="M20 18L32 32" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"/><circle cx="8" cy="32" r="4" fill="#34D399" opacity="0.3"/><circle cx="32" cy="32" r="4" fill="#60A5FA" opacity="0.3"/><circle cx="20" cy="18" r="4" fill="#F59E0B" opacity="0.3"/></svg></div>
+      <div class="logo-text">Money<span>Fork</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#">Rent vs Buy</a><a href="#">Debt vs Invest</a><a href="#">Roth vs Traditional</a><a href="#" class="active">House Budget</a>
+    </div>
+  </nav></header>
+
+  <section class="hero animate-in">
+    <div class="hero-badge"><span class="dot"></span> Free financial decision tools</div>
+    <h1>How Much <span class="blue">House</span> Can You Afford?</h1>
+    <p>Get your comfortable, conservative, and maximum home price based on your real numbers.</p>
+  </section>
+
+  <!-- INCOME -->
+  <div class="section animate-in delay-1">
+    <div class="section-header">
+      <div class="section-icon income">💰</div>
+      <div><div class="panel-title">Your Income</div><div class="panel-subtitle">Gross annual household income</div></div>
+    </div>
+    <div class="fields-grid">
+      <div class="field">
+        <label>Annual Gross Income <span class="value-display" id="incomeDisplay">$85,000</span></label>
+        <input type="range" id="income" min="20000" max="500000" step="5000" value="85000" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Monthly Debts <span class="value-display" id="debtsDisplay">$400</span></label>
+        <input type="range" id="debts" min="0" max="5000" step="50" value="400" oninput="update()">
+        <div class="panel-subtitle" style="margin-top:4px;">Car payments, student loans, credit card minimums, etc.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOME DETAILS -->
+  <div class="section animate-in delay-2">
+    <div class="section-header">
+      <div class="section-icon home">🏠</div>
+      <div><div class="panel-title">Home & Mortgage Details</div><div class="panel-subtitle">Customize to your market</div></div>
+    </div>
+    <div class="fields-grid-3">
+      <div class="field">
+        <label>Down Payment <span class="value-display" id="downDisplay">20%</span></label>
+        <input type="range" id="downPayment" min="3" max="50" step="1" value="20" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Mortgage Rate <span class="value-display" id="rateDisplay">6.8%</span></label>
+        <input type="range" id="mortgageRate" min="2" max="12" step="0.1" value="6.8" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Loan Term <span class="value-display" id="termDisplay">30 years</span></label>
+        <input type="range" id="term" min="10" max="30" step="5" value="30" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Property Tax Rate <span class="value-display" id="propTaxDisplay">1.1%</span></label>
+        <input type="range" id="propTax" min="0.1" max="3" step="0.1" value="1.1" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Home Insurance / yr <span class="value-display" id="insDisplay">$1,800</span></label>
+        <input type="range" id="insurance" min="600" max="6000" step="100" value="1800" oninput="update()">
+      </div>
+      <div class="field">
+        <label>HOA / mo <span class="value-display" id="hoaDisplay">$0</span></label>
+        <input type="range" id="hoa" min="0" max="800" step="25" value="0" oninput="update()">
+      </div>
+    </div>
+  </div>
+
+  <!-- BIG RESULT -->
+  <div class="result-hero animate-in delay-3" id="resultHero">
+    <div class="label">You Can Comfortably Afford</div>
+    <div class="big-number" id="bigPrice">$320,000</div>
+    <div class="sub">Monthly payment: <strong id="bigPayment">$2,100</strong> · DTI: <strong id="bigDTI">28%</strong></div>
+  </div>
+
+  <!-- THREE TIERS -->
+  <div class="tier-row">
+    <div class="tier-card conservative">
+      <div class="tier-label">Conservative</div>
+      <div class="tier-price" id="conservativePrice">$0</div>
+      <div class="tier-payment" id="conservativePayment">$0/mo</div>
+      <div class="tier-dti" id="conservativeDTI">25% DTI</div>
+    </div>
+    <div class="tier-card comfortable">
+      <div class="tier-label">Comfortable</div>
+      <div class="tier-price" id="comfortablePrice">$0</div>
+      <div class="tier-payment" id="comfortablePayment">$0/mo</div>
+      <div class="tier-dti" id="comfortableDTI">28% DTI</div>
+    </div>
+    <div class="tier-card aggressive">
+      <div class="tier-label">Maximum (Stretched)</div>
+      <div class="tier-price" id="aggressivePrice">$0</div>
+      <div class="tier-payment" id="aggressivePayment">$0/mo</div>
+      <div class="tier-dti" id="aggressiveDTI">36% DTI</div>
+    </div>
+  </div>
+
+  <!-- PAYMENT BREAKDOWN -->
+  <div class="payment-breakdown">
+    <div class="breakdown-header">
+      <div class="section-icon home">📊</div>
+      <div><div class="panel-title">Monthly Payment Breakdown</div><div class="panel-subtitle">Where your housing payment goes (comfortable tier)</div></div>
+    </div>
+    <div class="breakdown-content">
+      <div class="donut-container">
+        <svg viewBox="0 0 200 200" id="donutSvg"></svg>
+        <div class="donut-center">
+          <div class="amount" id="donutTotal">$0</div>
+          <div class="label">per month</div>
+        </div>
+      </div>
+      <div class="payment-items">
+        <div class="payment-item">
+          <div class="payment-dot" style="background:#38BDF8"></div>
+          <div class="payment-info"><div class="payment-name">Principal & Interest</div><div class="payment-amount" id="piAmount">$0</div></div>
+        </div>
+        <div class="payment-item">
+          <div class="payment-dot" style="background:#F59E0B"></div>
+          <div class="payment-info"><div class="payment-name">Property Taxes</div><div class="payment-amount" id="taxAmount">$0</div></div>
+        </div>
+        <div class="payment-item">
+          <div class="payment-dot" style="background:#A78BFA"></div>
+          <div class="payment-info"><div class="payment-name">Home Insurance</div><div class="payment-amount" id="insAmount">$0</div></div>
+        </div>
+        <div class="payment-item" id="pmiRow">
+          <div class="payment-dot" style="background:#F87171"></div>
+          <div class="payment-info"><div class="payment-name">PMI (< 20% down)</div><div class="payment-amount" id="pmiAmount">$0</div></div>
+        </div>
+        <div class="payment-item" id="hoaRow" style="display:none">
+          <div class="payment-dot" style="background:#FB923C"></div>
+          <div class="payment-info"><div class="payment-name">HOA</div><div class="payment-amount" id="hoaAmount">$0</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DTI GAUGE -->
+  <div class="dti-section">
+    <div class="dti-header">
+      <div class="panel-title">Debt-to-Income Ratio</div>
+      <div class="panel-subtitle">Total monthly debts (including housing) vs gross monthly income</div>
+    </div>
+    <div class="dti-gauge">
+      <div class="dti-fill" id="dtiFill" style="width:28%"></div>
+    </div>
+    <div class="dti-markers">
+      <span class="dti-marker">0%</span>
+      <span class="dti-marker" style="color:var(--accent-safe)">28% ✓</span>
+      <span class="dti-marker" style="color:var(--accent-house)">36%</span>
+      <span class="dti-marker" style="color:var(--accent-warn)">43%+ ⚠</span>
+      <span class="dti-marker">50%</span>
+    </div>
+    <div style="text-align:center; margin-top:8px;">
+      <span style="font-size:24px; font-weight:700;" id="dtiValue">28%</span>
+      <span style="font-size:14px; color:var(--text-muted); margin-left:8px;" id="dtiStatus">Within guidelines</span>
+    </div>
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="insight-box">
+    <div class="insight-icon">💡</div>
+    <div class="insight-text" id="insightText">Loading...</div>
+  </div>
+
+  <!-- Explanation -->
+  <div class="section" style="margin-bottom: 48px;">
+    <div class="panel-title" style="margin-bottom: 12px;">How This Calculator Works</div>
+    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
+      This calculator uses the <strong style="color:var(--text)">28/36 rule</strong> as the foundation. The "comfortable" tier caps your total housing payment at 28% of gross income. The "conservative" tier uses 25%, and the "maximum" tier stretches to the 36% back-end ratio (total debts including housing). It calculates the maximum mortgage you can carry at each tier, then converts that to a home price based on your down payment. PMI is estimated at 0.5% annually if your down payment is under 20%. The monthly payment includes principal, interest, property taxes, insurance, PMI (if applicable), and HOA fees.
+    </p>
+  </div>
+
+  <footer>
+    <p>MoneyFork — Free financial decision tools. No ads. No accounts. Just clarity.</p>
+    <p style="margin-top:8px;">Built to help you make smarter money decisions.</p>
+  </footer>
+</div>
+
+<script>
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+function calcMortgagePayment(principal, annualRate, termYears) {
+  const r = annualRate / 12;
+  const n = termYears * 12;
+  if (r === 0) return principal / n;
+  return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+}
+
+function calcMaxHomePrice(maxHousingPayment, downPct, annualRate, termYears, propTaxRate, insuranceYr, hoa, pmiRate) {
+  // Binary search for home price where total monthly payment = maxHousingPayment
+  let lo = 0, hi = 5000000;
+  for (let i = 0; i < 50; i++) {
+    const mid = (lo + hi) / 2;
+    const downAmt = mid * (downPct / 100);
+    const loan = mid - downAmt;
+    const pi = calcMortgagePayment(loan, annualRate, termYears);
+    const tax = mid * (propTaxRate / 100) / 12;
+    const ins = insuranceYr / 12;
+    const pmi = downPct < 20 ? (loan * pmiRate / 100) / 12 : 0;
+    const total = pi + tax + ins + pmi + hoa;
+    if (total < maxHousingPayment) lo = mid;
+    else hi = mid;
+  }
+  return Math.round((lo + hi) / 2 / 1000) * 1000;
+}
+
+function drawDonut(slices) {
+  const svg = document.getElementById('donutSvg');
+  const cx = 100, cy = 100, r = 80, inner = 55;
+  let cumAngle = -90;
+  let paths = '';
+
+  slices.forEach(s => {
+    const startAngle = cumAngle;
+    const endAngle = cumAngle + s.pct * 3.6;
+    const largeArc = s.pct > 50 ? 1 : 0;
+
+    const x1 = cx + r * Math.cos(startAngle * Math.PI / 180);
+    const y1 = cy + r * Math.sin(startAngle * Math.PI / 180);
+    const x2 = cx + r * Math.cos(endAngle * Math.PI / 180);
+    const y2 = cy + r * Math.sin(endAngle * Math.PI / 180);
+    const ix1 = cx + inner * Math.cos(endAngle * Math.PI / 180);
+    const iy1 = cy + inner * Math.sin(endAngle * Math.PI / 180);
+    const ix2 = cx + inner * Math.cos(startAngle * Math.PI / 180);
+    const iy2 = cy + inner * Math.sin(startAngle * Math.PI / 180);
+
+    if (s.pct > 0.5) {
+      paths += `<path d="M${x1},${y1} A${r},${r} 0 ${largeArc} 1 ${x2},${y2} L${ix1},${iy1} A${inner},${inner} 0 ${largeArc} 0 ${ix2},${iy2} Z" fill="${s.color}" opacity="0.85"/>`;
+    }
+    cumAngle = endAngle;
+  });
+
+  svg.innerHTML = paths;
+}
+
+function update() {
+  const income = +document.getElementById('income').value;
+  const monthlyDebts = +document.getElementById('debts').value;
+  const downPct = +document.getElementById('downPayment').value;
+  const rate = +document.getElementById('mortgageRate').value / 100;
+  const term = +document.getElementById('term').value;
+  const propTaxRate = +document.getElementById('propTax').value;
+  const insuranceYr = +document.getElementById('insurance').value;
+  const hoa = +document.getElementById('hoa').value;
+  const pmiRate = 0.5;
+
+  const monthlyIncome = income / 12;
+
+  // Displays
+  document.getElementById('incomeDisplay').textContent = fmt(income);
+  document.getElementById('debtsDisplay').textContent = fmt(monthlyDebts);
+  document.getElementById('downDisplay').textContent = downPct + '%';
+  document.getElementById('rateDisplay').textContent = (rate * 100).toFixed(1) + '%';
+  document.getElementById('termDisplay').textContent = term + ' years';
+  document.getElementById('propTaxDisplay').textContent = propTaxRate + '%';
+  document.getElementById('insDisplay').textContent = fmt(insuranceYr);
+  document.getElementById('hoaDisplay').textContent = fmt(hoa);
+
+  // Tier thresholds (front-end housing ratio)
+  const conservativeRatio = 0.25;
+  const comfortableRatio = 0.28;
+  // Aggressive uses back-end: total debts + housing <= 36%
+  const aggressiveBackEnd = 0.36;
+
+  const conservativeMax = monthlyIncome * conservativeRatio;
+  const comfortableMax = monthlyIncome * comfortableRatio;
+  const aggressiveMax = monthlyIncome * aggressiveBackEnd - monthlyDebts;
+
+  const conservativePrice = calcMaxHomePrice(conservativeMax, downPct, rate, term, propTaxRate, insuranceYr, hoa, pmiRate);
+  const comfortablePrice = calcMaxHomePrice(comfortableMax, downPct, rate, term, propTaxRate, insuranceYr, hoa, pmiRate);
+  const aggressivePrice = calcMaxHomePrice(Math.max(0, aggressiveMax), downPct, rate, term, propTaxRate, insuranceYr, hoa, pmiRate);
+
+  // Calculate actual payments for comfortable
+  const comfDown = comfortablePrice * (downPct / 100);
+  const comfLoan = comfortablePrice - comfDown;
+  const comfPI = calcMortgagePayment(comfLoan, rate, term);
+  const comfTax = comfortablePrice * (propTaxRate / 100) / 12;
+  const comfIns = insuranceYr / 12;
+  const comfPMI = downPct < 20 ? (comfLoan * pmiRate / 100) / 12 : 0;
+  const comfTotal = comfPI + comfTax + comfIns + comfPMI + hoa;
+
+  // Tier payments
+  function getTotalPayment(price) {
+    const d = price * (downPct / 100);
+    const l = price - d;
+    const pi = calcMortgagePayment(l, rate, term);
+    const tx = price * (propTaxRate / 100) / 12;
+    const ins = insuranceYr / 12;
+    const pmi = downPct < 20 ? (l * pmiRate / 100) / 12 : 0;
+    return pi + tx + ins + pmi + hoa;
+  }
+
+  const conservativePay = getTotalPayment(conservativePrice);
+  const comfortablePay = getTotalPayment(comfortablePrice);
+  const aggressivePay = getTotalPayment(aggressivePrice);
+
+  // Big result
+  document.getElementById('bigPrice').textContent = fmt(comfortablePrice);
+  document.getElementById('bigPayment').textContent = fmt(comfortablePay) + '/mo';
+  const comfDTI = ((comfortablePay + monthlyDebts) / monthlyIncome * 100);
+  document.getElementById('bigDTI').textContent = Math.round(comfDTI) + '%';
+
+  // Tier cards
+  document.getElementById('conservativePrice').textContent = fmt(conservativePrice);
+  document.getElementById('conservativePayment').textContent = fmt(conservativePay) + '/mo';
+  document.getElementById('conservativeDTI').textContent = Math.round((conservativePay + monthlyDebts) / monthlyIncome * 100) + '% DTI';
+
+  document.getElementById('comfortablePrice').textContent = fmt(comfortablePrice);
+  document.getElementById('comfortablePayment').textContent = fmt(comfortablePay) + '/mo';
+  document.getElementById('comfortableDTI').textContent = Math.round(comfDTI) + '% DTI';
+
+  document.getElementById('aggressivePrice').textContent = fmt(aggressivePrice);
+  document.getElementById('aggressivePayment').textContent = fmt(aggressivePay) + '/mo';
+  document.getElementById('aggressiveDTI').textContent = Math.round((aggressivePay + monthlyDebts) / monthlyIncome * 100) + '% DTI';
+
+  // Payment breakdown donut
+  const total = comfPI + comfTax + comfIns + comfPMI + (hoa > 0 ? hoa : 0);
+  const slices = [
+    { pct: (comfPI / total) * 100, color: '#38BDF8' },
+    { pct: (comfTax / total) * 100, color: '#F59E0B' },
+    { pct: (comfIns / total) * 100, color: '#A78BFA' },
+  ];
+  if (comfPMI > 0) slices.push({ pct: (comfPMI / total) * 100, color: '#F87171' });
+  if (hoa > 0) slices.push({ pct: (hoa / total) * 100, color: '#FB923C' });
+
+  drawDonut(slices);
+  document.getElementById('donutTotal').textContent = fmt(total);
+  document.getElementById('piAmount').textContent = fmt(comfPI);
+  document.getElementById('taxAmount').textContent = fmt(comfTax);
+  document.getElementById('insAmount').textContent = fmt(comfIns);
+  document.getElementById('pmiAmount').textContent = fmt(comfPMI);
+  document.getElementById('pmiRow').style.display = downPct < 20 ? 'flex' : 'none';
+  document.getElementById('hoaAmount').textContent = fmt(hoa);
+  document.getElementById('hoaRow').style.display = hoa > 0 ? 'flex' : 'none';
+
+  // DTI Gauge
+  const dti = (comfortablePay + monthlyDebts) / monthlyIncome * 100;
+  const dtiFill = document.getElementById('dtiFill');
+  const dtiPct = Math.min(dti / 50 * 100, 100);
+  dtiFill.style.width = dtiPct + '%';
+
+  if (dti <= 28) {
+    dtiFill.style.background = 'var(--gradient-safe)';
+    document.getElementById('dtiStatus').textContent = '✓ Within guidelines';
+    document.getElementById('dtiStatus').style.color = 'var(--accent-safe)';
+  } else if (dti <= 36) {
+    dtiFill.style.background = 'var(--gradient-house)';
+    document.getElementById('dtiStatus').textContent = 'Manageable but watch it';
+    document.getElementById('dtiStatus').style.color = 'var(--accent-house)';
+  } else {
+    dtiFill.style.background = 'var(--gradient-warn)';
+    document.getElementById('dtiStatus').textContent = '⚠ Above recommended limit';
+    document.getElementById('dtiStatus').style.color = 'var(--accent-warn)';
+  }
+  document.getElementById('dtiValue').textContent = Math.round(dti) + '%';
+
+  // Insight
+  const insight = document.getElementById('insightText');
+  const downAmt = comfortablePrice * (downPct / 100);
+
+  let tips = [];
+  if (downPct < 20) {
+    tips.push(`<strong>PMI alert:</strong> At ${downPct}% down, you'll pay ~${fmt(comfPMI)}/mo in PMI until you reach 20% equity. That's ${fmt(comfPMI * 12)}/yr that doesn't build equity.`);
+  }
+  if (monthlyDebts > monthlyIncome * 0.1) {
+    tips.push(`<strong>Debt impact:</strong> Your ${fmt(monthlyDebts)}/mo in existing debts reduces your buying power by roughly ${fmt(monthlyDebts / (rate/12 + propTaxRate/100/12 + insuranceYr/12/comfortablePrice) * 0.8)} in home price. Paying down debts first could unlock a bigger budget.`);
+  }
+  if (dti > 36) {
+    tips.push(`<strong>Caution:</strong> Even the comfortable tier puts your DTI at ${Math.round(dti)}%. Most lenders prefer under 36%. You may want to consider a less expensive home or increasing your income before buying.`);
+  }
+  if (tips.length === 0) {
+    tips.push(`<strong>Looking good:</strong> At ${fmt(comfortablePrice)}, your DTI is a healthy ${Math.round(dti)}%. You'll need ${fmt(downAmt)} for the down payment plus roughly ${fmt(comfortablePrice * 0.03)} for closing costs — so about ${fmt(downAmt + comfortablePrice * 0.03)} in cash to close.`);
+  }
+  insight.innerHTML = tips.join(' ');
+}
+
+update();
+</script>
+</body>
+</html>
