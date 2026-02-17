@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XF2Z9K35TB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-XF2Z9K35TB");
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compound Interest Calculator — MoneyFork | Free Financial Decision Tools</title>
+<meta name="description" content="See how your money grows with compound interest. Visualize the power of compounding with adjustable starting amount, monthly contributions, interest rate, and time horizon. Free calculator.">
+<meta name="keywords" content="compound interest calculator, compound interest, investment growth calculator, savings growth, how compound interest works, interest calculator, money growth">
+<meta name="author" content="MoneyFork">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://moneyfork.co/compound-interest">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moneyfork.co/compound-interest">
+<meta property="og:title" content="Compound Interest Calculator — MoneyFork">
+<meta property="og:description" content="See how your money grows with compound interest. Free interactive calculator — no sign-up required.">
+<meta property="og:image" content="https://moneyfork.co/og-compound-interest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="MoneyFork">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compound Interest Calculator — MoneyFork">
+<meta name="twitter:description" content="See how your money grows with compound interest. Free interactive calculator.">
+<meta name="twitter:image" content="https://moneyfork.co/og-compound-interest.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C0F14'/%3E%3Cpath d='M16 5L16 14' stroke='%23F59E0B' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 14L8 25' stroke='%2334D399' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 14L24 25' stroke='%2360A5FA' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='8' cy='25' r='3' fill='%2334D399' opacity='0.4'/%3E%3Ccircle cx='24' cy='25' r='3' fill='%2360A5FA' opacity='0.4'/%3E%3Ccircle cx='16' cy='14' r='3' fill='%23F59E0B' opacity='0.4'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"MoneyFork Compound Interest Calculator","description":"Visualize compound interest growth over time with adjustable inputs.","url":"https://moneyfork.co/compound-interest","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"MoneyFork","url":"https://moneyfork.co"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is compound interest?","acceptedAnswer":{"@type":"Answer","text":"Compound interest is when you earn interest on both your original deposit and on the interest that has already been added. Over time, this creates exponential growth — your money earns money, and then that money earns money too. Albert Einstein reportedly called it the eighth wonder of the world."}},{"@type":"Question","name":"How much will $10,000 grow with compound interest?","acceptedAnswer":{"@type":"Answer","text":"At 7% annual return, $10,000 grows to about $19,672 in 10 years, $38,697 in 20 years, and $76,123 in 30 years — without adding any additional money. If you also contribute $200 per month, those numbers jump to $53,832 in 10 years, $142,659 in 20 years, and $321,363 in 30 years."}},{"@type":"Question","name":"How often should interest compound?","acceptedAnswer":{"@type":"Answer","text":"More frequent compounding produces slightly higher returns. Monthly compounding is most common for savings accounts and investments. The difference between monthly and daily compounding is minimal. Annual compounding produces slightly less growth than monthly, but the difference is small for most practical purposes."}}]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0F14; --surface: #151921; --surface-2: #1C2230; --surface-3: #232A38;
+    --border: #2A3244; --text: #E8ECF4; --text-muted: #8490A7; --text-dim: #5A6580;
+    --accent-growth: #34D399; --accent-growth-dim: rgba(52, 211, 153, 0.12);
+    --accent-contrib: #60A5FA; --accent-contrib-dim: rgba(96, 165, 250, 0.12);
+    --accent-interest: #A78BFA; --accent-interest-dim: rgba(167, 139, 250, 0.12);
+    --accent-gold: #F59E0B; --accent-gold-dim: rgba(245, 158, 11, 0.1);
+    --gradient-growth: linear-gradient(135deg, #34D399, #10B981);
+    --radius: 14px; --radius-sm: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
+  .glow-1 { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(52, 211, 153, 0.06) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; z-index: 0; }
+  .glow-2 { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(167, 139, 250, 0.05) 0%, transparent 70%); bottom: -100px; left: -100px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  header { padding: 32px 0 0; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-icon { width: 40px; height: 40px; }
+  .logo-icon svg { width: 100%; height: 100%; }
+  .logo-text { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.5px; }
+  .logo-text span { color: var(--accent-gold); }
+  nav { display: flex; justify-content: space-between; align-items: center; }
+  .nav-links { display: flex; gap: 8px; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
+  .nav-links a.active { color: var(--accent-gold); background: var(--accent-gold-dim); }
+  .hero { text-align: center; padding: 56px 0 40px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold); }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+  .hero h1 .green { color: var(--accent-growth); }
+  .hero p { color: var(--text-muted); font-size: 17px; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+  .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .section-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--accent-growth-dim); }
+  .panel-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; }
+  .panel-subtitle { font-size: 13px; color: var(--text-muted); }
+  .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 8px; }
+  .field label .value-display { color: var(--text); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+  input[type="range"] { -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px; background: var(--surface-3); outline: none; margin-top: 4px; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-gold); cursor: pointer; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3); transition: transform 0.15s; }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+  /* Big result */
+  .result-hero { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; text-align: center; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .result-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-growth); }
+  .result-hero .label { font-size: 14px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .result-hero .big-number { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 64px); color: var(--accent-growth); letter-spacing: -2px; margin-bottom: 12px; }
+  .result-sub-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .result-sub { text-align: center; }
+  .result-sub .val { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .result-sub .val.blue { color: var(--accent-contrib); }
+  .result-sub .val.purple { color: var(--accent-interest); }
+  .result-sub .lbl { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Stacked area chart */
+  .chart-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .chart-container { position: relative; height: 320px; overflow: hidden; }
+  .chart-svg { width: 100%; height: 100%; }
+
+  .chart-legend { display: flex; gap: 24px; justify-content: center; margin-top: 16px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  /* Year table */
+  .table-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; }
+  .year-table { width: 100%; border-collapse: collapse; }
+  .year-table th { text-align: left; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; padding: 10px 12px; border-bottom: 2px solid var(--border); }
+  .year-table td { font-size: 14px; padding: 10px 12px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+  .year-table tr:last-child td { border-bottom: none; font-weight: 700; }
+  .year-table .green { color: var(--accent-growth); }
+  .year-table .blue { color: var(--accent-contrib); }
+  .year-table .purple { color: var(--accent-interest); }
+  .table-toggle { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 20px; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: block; margin: 16px auto 0; }
+  .table-toggle:hover { color: var(--text); border-color: var(--text-dim); }
+
+  .insight-box { background: var(--accent-gold-dim); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--radius-sm); padding: 18px; margin-bottom: 24px; display: flex; gap: 12px; align-items: flex-start; }
+  .insight-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .insight-text { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .insight-text strong { color: var(--text); }
+
+  footer { text-align: center; padding: 48px 0 32px; color: var(--text-dim); font-size: 13px; border-top: 1px solid var(--border); }
+  @media (max-width: 768px) {
+    .fields-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 32px; }
+    .result-hero .big-number { font-size: 36px; }
+    .result-sub-row { gap: 16px; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeUp 0.5s ease-out forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+</style>
+</head>
+<body>
+<div class="glow-1"></div><div class="glow-2"></div>
+<div class="container">
+  <header><nav>
+    <a href="/" class="logo" style="text-decoration:none;color:inherit">
+      <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4L20 18" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/><path d="M20 18L8 32" stroke="#34D399" stroke-width="3" stroke-linecap="round"/><path d="M20 18L32 32" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"/><circle cx="8" cy="32" r="4" fill="#34D399" opacity="0.3"/><circle cx="32" cy="32" r="4" fill="#60A5FA" opacity="0.3"/><circle cx="20" cy="18" r="4" fill="#F59E0B" opacity="0.3"/></svg></div>
+      <div class="logo-text">Money<span>Fork</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#">Rent vs Buy</a><a href="#">Debt vs Invest</a><a href="#">Roth vs Traditional</a><a href="#" class="active">Compound Interest</a>
+    </div>
+  </nav></header>
+
+  <section class="hero animate-in">
+    <div class="hero-badge"><span class="dot"></span> Free financial decision tools</div>
+    <h1>The Power of <span class="green">Compound Interest</span></h1>
+    <p>Watch your money grow exponentially. Adjust the inputs and see how time, contributions, and rate work together.</p>
+  </section>
+
+  <div class="section animate-in delay-1">
+    <div class="section-header">
+      <div class="section-icon">📈</div>
+      <div><div class="panel-title">Your Inputs</div><div class="panel-subtitle">Starting point, contributions, and growth rate</div></div>
+    </div>
+    <div class="fields-grid">
+      <div class="field">
+        <label>Starting Amount <span class="value-display" id="startDisplay">$10,000</span></label>
+        <input type="range" id="startAmt" min="0" max="500000" step="1000" value="10000" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Monthly Contribution <span class="value-display" id="monthlyDisplay">$500</span></label>
+        <input type="range" id="monthly" min="0" max="5000" step="50" value="500" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Annual Interest Rate <span class="value-display" id="rateDisplay">7%</span></label>
+        <input type="range" id="rate" min="0" max="15" step="0.5" value="7" oninput="update()">
+      </div>
+      <div class="field">
+        <label>Time Period <span class="value-display" id="yearsDisplay">20 years</span></label>
+        <input type="range" id="years" min="1" max="40" step="1" value="20" oninput="update()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Big Result -->
+  <div class="result-hero animate-in delay-2" id="resultHero">
+    <div class="label">Total Future Value</div>
+    <div class="big-number" id="bigTotal">$0</div>
+    <div class="result-sub-row">
+      <div class="result-sub"><div class="val blue" id="totalContrib">$0</div><div class="lbl">Total Contributed</div></div>
+      <div class="result-sub"><div class="val purple" id="totalInterest">$0</div><div class="lbl">Interest Earned</div></div>
+      <div class="result-sub"><div class="val" id="interestPct" style="color:var(--accent-growth)">0%</div><div class="lbl">Interest as % of Total</div></div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--accent-interest-dim)">📊</div>
+      <div><div class="panel-title">Growth Over Time</div><div class="panel-subtitle">Contributions vs compound interest</div></div>
+    </div>
+    <div class="chart-container" id="chartContainer"></div>
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-contrib)"></div> Your Contributions</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-interest)"></div> Interest Earned</div>
+    </div>
+  </div>
+
+  <!-- Year Table -->
+  <div class="table-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--accent-contrib-dim)">📋</div>
+      <div><div class="panel-title">Year-by-Year Breakdown</div><div class="panel-subtitle">Watch the compounding accelerate</div></div>
+    </div>
+    <table class="year-table">
+      <thead><tr><th>Year</th><th>Contributions</th><th>Interest Earned</th><th>Total Balance</th></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <button class="table-toggle" id="tableToggle" onclick="toggleTable()">Show All Years</button>
+  </div>
+
+  <!-- Insight -->
+  <div class="insight-box">
+    <div class="insight-icon">💡</div>
+    <div class="insight-text" id="insightText">Loading...</div>
+  </div>
+
+  <!-- Explanation -->
+  <div class="section" style="margin-bottom: 48px;">
+    <div class="panel-title" style="margin-bottom: 12px;">How Compound Interest Works</div>
+    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
+      Compound interest means you earn returns not just on your original money, but also on the interest that's already accumulated. This creates a snowball effect — the longer your money compounds, the faster it grows. A 7% annual return doubles your money roughly every 10 years (the Rule of 72). This calculator compounds monthly, which is standard for most investment and savings accounts.
+    </p>
+  </div>
+
+  <footer>
+    <p>MoneyFork — Free financial decision tools. No ads. No accounts. Just clarity.</p>
+    <p style="margin-top:8px;">Built to help you make smarter money decisions.</p>
+  </footer>
+</div>
+
+<script>
+let showAllYears = false;
+
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function fmtK(n) {
+  if (Math.abs(n) >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+  if (Math.abs(n) >= 1000) return '$' + Math.round(n / 1000) + 'k';
+  return '$' + Math.round(n);
+}
+
+function toggleTable() {
+  showAllYears = !showAllYears;
+  document.getElementById('tableToggle').textContent = showAllYears ? 'Show Less' : 'Show All Years';
+  update();
+}
+
+function renderChart(yearData) {
+  const container = document.getElementById('chartContainer');
+  const maxVal = yearData[yearData.length - 1].balance;
+  const w = 1000, h = 280;
+  const padL = 60, padR = 20, padT = 10, padB = 30;
+  const chartW = w - padL - padR;
+  const chartH = h - padT - padB;
+
+  const xStep = chartW / Math.max(yearData.length - 1, 1);
+
+  // Build contribution area path and interest area path
+  let contribPath = `M${padL},${h - padB}`;
+  let totalPath = `M${padL},${h - padB}`;
+
+  yearData.forEach((d, i) => {
+    const x = padL + i * xStep;
+    const contribY = padT + chartH - (d.totalContrib / maxVal * chartH);
+    const totalY = padT + chartH - (d.balance / maxVal * chartH);
+    contribPath += ` L${x},${contribY}`;
+    totalPath += ` L${x},${totalY}`;
+  });
+
+  const lastX = padL + (yearData.length - 1) * xStep;
+  totalPath += ` L${lastX},${h - padB} Z`;
+  contribPath += ` L${lastX},${h - padB} Z`;
+
+  // Grid lines
+  const gridSteps = 5;
+  let gridLines = '';
+  let yLabels = '';
+  for (let i = 0; i <= gridSteps; i++) {
+    const y = padT + (chartH / gridSteps) * i;
+    const val = maxVal * (1 - i / gridSteps);
+    gridLines += `<line x1="${padL}" y1="${y}" x2="${w - padR}" y2="${y}" stroke="#2A3244" stroke-opacity="0.5"/>`;
+    yLabels += `<text x="${padL - 8}" y="${y + 4}" text-anchor="end" fill="#5A6580" font-size="11" font-family="DM Sans">${fmtK(val)}</text>`;
+  }
+
+  // X labels
+  let xLabels = '';
+  const labelStep = yearData.length <= 10 ? 1 : yearData.length <= 20 ? 2 : 5;
+  yearData.forEach((d, i) => {
+    if (i % labelStep === 0 || i === yearData.length - 1) {
+      const x = padL + i * xStep;
+      xLabels += `<text x="${x}" y="${h - 8}" text-anchor="middle" fill="#5A6580" font-size="11" font-family="DM Sans">${d.year}</text>`;
+    }
+  });
+
+  container.innerHTML = `
+    <svg viewBox="0 0 ${w} ${h}" class="chart-svg" preserveAspectRatio="none">
+      ${gridLines}
+      ${yLabels}
+      ${xLabels}
+      <path d="${totalPath}" fill="url(#interestGrad)" opacity="0.6"/>
+      <path d="${contribPath}" fill="url(#contribGrad)" opacity="0.7"/>
+      <defs>
+        <linearGradient id="contribGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#60A5FA" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="interestGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#A78BFA" stop-opacity="0.1"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  `;
+}
+
+function update() {
+  const startAmt = +document.getElementById('startAmt').value;
+  const monthly = +document.getElementById('monthly').value;
+  const rate = +document.getElementById('rate').value / 100;
+  const years = +document.getElementById('years').value;
+  const monthlyRate = rate / 12;
+
+  document.getElementById('startDisplay').textContent = fmt(startAmt);
+  document.getElementById('monthlyDisplay').textContent = fmt(monthly);
+  document.getElementById('rateDisplay').textContent = (rate * 100) + '%';
+  document.getElementById('yearsDisplay').textContent = years + (years === 1 ? ' year' : ' years');
+
+  // Calculate year by year
+  let balance = startAmt;
+  let totalContrib = startAmt;
+  let totalInterestEarned = 0;
+  const yearData = [{ year: 0, balance: startAmt, totalContrib: startAmt, totalInterest: 0, yearInterest: 0 }];
+
+  for (let y = 1; y <= years; y++) {
+    let yearInterest = 0;
+    for (let m = 0; m < 12; m++) {
+      const interest = balance * monthlyRate;
+      yearInterest += interest;
+      balance += interest + monthly;
+      totalContrib += monthly;
+    }
+    totalInterestEarned += yearInterest;
+    yearData.push({
+      year: y,
+      balance: balance,
+      totalContrib: totalContrib,
+      totalInterest: totalInterestEarned,
+      yearInterest: yearInterest
+    });
+  }
+
+  const finalBalance = balance;
+  const interestPct = finalBalance > 0 ? (totalInterestEarned / finalBalance * 100) : 0;
+
+  document.getElementById('bigTotal').textContent = fmt(finalBalance);
+  document.getElementById('totalContrib').textContent = fmt(totalContrib);
+  document.getElementById('totalInterest').textContent = fmt(totalInterestEarned);
+  document.getElementById('interestPct').textContent = Math.round(interestPct) + '%';
+
+  // Chart
+  renderChart(yearData);
+
+  // Table
+  const tbody = document.getElementById('tableBody');
+  const displayData = showAllYears ? yearData.slice(1) : yearData.slice(1, 11);
+  let rows = '';
+  displayData.forEach(d => {
+    const isLast = d.year === years;
+    rows += `<tr${isLast ? ' style="font-weight:700"' : ''}>
+      <td>${d.year}</td>
+      <td class="blue">${fmt(d.totalContrib)}</td>
+      <td class="purple">${fmt(d.totalInterest)}</td>
+      <td class="green">${fmt(d.balance)}</td>
+    </tr>`;
+  });
+  if (!showAllYears && years > 10) {
+    rows += `<tr style="font-weight:700">
+      <td>${years}</td>
+      <td class="blue">${fmt(yearData[years].totalContrib)}</td>
+      <td class="purple">${fmt(yearData[years].totalInterest)}</td>
+      <td class="green">${fmt(yearData[years].balance)}</td>
+    </tr>`;
+  }
+  tbody.innerHTML = rows;
+  document.getElementById('tableToggle').style.display = years <= 10 ? 'none' : 'block';
+
+  // Insight
+  const insight = document.getElementById('insightText');
+  const rule72 = rate > 0 ? Math.round(72 / (rate * 100)) : '∞';
+  const lastYearInterest = yearData[years].yearInterest;
+  const monthlyEquiv = lastYearInterest / 12;
+
+  if (rate === 0) {
+    insight.innerHTML = `<strong>No growth:</strong> At 0% return, your money doesn't compound. You'll simply accumulate your contributions over time. Even a small return makes a massive difference — try bumping it to 5-7%.`;
+  } else if (years >= 20 && interestPct > 50) {
+    insight.innerHTML = `<strong>Compounding is doing the heavy lifting:</strong> After ${years} years, ${Math.round(interestPct)}% of your balance is pure interest — money your money earned for you. In year ${years} alone, you'll earn roughly ${fmt(lastYearInterest)} in interest (${fmt(monthlyEquiv)}/mo), which is ${monthly > 0 ? (lastYearInterest / (monthly * 12) * 100).toFixed(0) + '% more than your annual contributions' : 'entirely passive income'}. At ${(rate * 100)}%, your money doubles roughly every ${rule72} years (Rule of 72).`;
+  } else {
+    insight.innerHTML = `<strong>Time is your superpower:</strong> At ${(rate * 100)}%, your money doubles roughly every ${rule72} years (Rule of 72). Right now interest is ${Math.round(interestPct)}% of your total — as years pass, compounding accelerates dramatically. The last 10 years of a 30-year investment typically generate more growth than the first 20 combined.`;
+  }
+}
+
+update();
+</script>
+</body>
+</html>
